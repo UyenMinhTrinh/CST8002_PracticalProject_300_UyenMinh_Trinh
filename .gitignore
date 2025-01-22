@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Temporary files and backup files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Logs and runtime data
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Virtual environment files
+venv/
+env/
+ENV/
+*.env
+*.venv
+
+# IDE specific files
+.vscode/
+.idea/
+*.code-workspace
+
+# Exclude CSV backups (optional)
+*.csv.bak
+
+# Ignore system-specific metadata
+*.metadata/
