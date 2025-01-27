@@ -24,3 +24,12 @@ class Record:
         self.period = period
         self.description = description
         self.value = value
+
+    def __str__(self):
+        """
+        String representation of the record object.
+        :return: A formatted string containing the record data.
+        """
+        value_str = f"{self.value:.2f}" if self.value is not None else "N/A"
+        return (f"CSDUID: {self.csduid}, CSD: {self.csd}, Period: {self.period}, "
+                f"Description: {self.description}, Value: {value_str}")
