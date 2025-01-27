@@ -19,3 +19,27 @@ def load_data(file_path):
     :return: A list of Record objects.
     """
     records = []
+    try:
+        with open(file_path, 'r') as file:
+            reader = csv.DictReader(file)  # Use DictReader for column-based access
+            for row in reader:
+                # Extract relevant fields from each row
+                csduid = row['CSDUID']
+                csd = row['CSD']
+                period = row['Period']
+                description = row['IndicatorSummaryDescription']
+                value = row['OriginalValue']
+                
+                # Handle missing or invalid values for "value"
+                value = float(value) if value else None
+                
+                # Create a Record object and add it to the list
+                record = Record(csduid, csd, period, description, value)
+                records.append(record)
+    except FileNotFoundError:
+        print(f"Error: File '{file_path}' not found.")
+    except KeyError as e:
+        print(f"Missing column in the dataset: {e}")
+    except Exception as e:
+        print(f"An error occurred while loading the data: {e}")
+    return records
