@@ -58,7 +58,7 @@ def main():
     Main entry point for the program.
     """
     print("Author: Uyen Minh Trinh")
-    file_path = r'C:\Users\Admin\OneDrive\Tài liệu\GitHub\CST8002_PracticalProject_300_UyenMinh_Trinh\Dwellingunitsdownload.csv'
+    file_path = 'Dwellingunitsdownload.csv'
     records = load_data(file_path)
     if records:
         display_records(records)
