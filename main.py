@@ -1,0 +1,11 @@
+"""
+Course: CST8002 - Programming Language Research Project
+Professor: Tyler DeLay
+Due Date: 26/01/2025
+Author: Uyen Minh Trinh
+
+Description:
+This is the main program file for parsing a CSV file into Record objects
+and displaying the records in the console. It demonstrates the use of File I/O,
+Object-Oriented Programming (OOP), and error handling in Python.
+"""
