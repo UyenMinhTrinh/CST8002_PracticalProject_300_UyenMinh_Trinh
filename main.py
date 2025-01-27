@@ -18,7 +18,7 @@ def load_data(file_path):
     :param file_path: Path to the CSV file.
     :return: A list of Record objects.
     """
-    records = []
+    records = []  # Initialize an empty list
     try:
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)  # Use DictReader for column-based access
@@ -35,7 +35,7 @@ def load_data(file_path):
                 
                 # Create a Record object and add it to the list
                 record = Record(csduid, csd, period, description, value)
-                records.append(record)
+                records.append(record)  # Add each Record object to the list
     except FileNotFoundError:
         print(f"Error: File '{file_path}' not found.")
     except KeyError as e:
@@ -58,6 +58,7 @@ def main():
     Main entry point for the program.
     """
     print("Author: Uyen Minh Trinh\n", flush=True)
+    # Variable declaration
     file_path = 'Dwellingunitsdownload.csv'
     records = load_data(file_path)
     if records:
