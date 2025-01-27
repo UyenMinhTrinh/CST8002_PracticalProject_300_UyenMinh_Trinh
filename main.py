@@ -57,7 +57,7 @@ def main():
     """
     Main entry point for the program.
     """
-    print("Author: Uyen Minh Trinh")
+    print("Author: Uyen Minh Trinh\n", flush=True)
     file_path = 'Dwellingunitsdownload.csv'
     records = load_data(file_path)
     if records:
