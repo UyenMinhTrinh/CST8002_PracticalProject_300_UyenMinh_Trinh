@@ -28,3 +28,18 @@ def display_records(records):
     print("\n--- Records ---")
     for record in records:
         print(record)
+
+def main():
+    """
+    Main entry point for the program.
+    """
+    print("Author: Uyen Minh Trinh")
+    file_path = 'Dwellingunitsdownload.csv'
+    records = load_data(file_path)
+    if records:
+        display_records(records)
+    else:
+        print("No records to display.")
+
+if __name__ == "__main__":
+    main()
