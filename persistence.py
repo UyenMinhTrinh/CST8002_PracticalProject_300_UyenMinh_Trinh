@@ -23,18 +23,6 @@ class Persistence:
 
     @staticmethod
     def save_data(records, directory='output'):
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-        filename = os.path.join(directory, f"output_{uuid.uuid4()}.csv")
-        with open(filename, mode='w', encoding='utf-8', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(["CSDUID", "CSD", "Period", "IndicatorSummaryDescription", "OriginalValue"])
-            for record in records:
-                writer.writerow([record.csduid, record.csd, record.period, record.description, record.value])
-        print(f"Data saved to {filename}")
-
-    @staticmethod
-    def save_data(records, directory='output'):
         """Saves records to a new file with a unique UUID-based filename."""
         if not os.path.exists(directory):
             os.makedirs(directory)  # Ensure the output directory exists
