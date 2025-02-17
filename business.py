@@ -10,6 +10,12 @@ class Business:
         else:
             return None
 
+    def add_record(self, record):
+        """Adds a new record to the in-memory dataset."""
+        self.records.append(record)
+        print("Record successfully added.")
+
+
     def list_records(self):
         """Displays all records, printing 'Program by Uyen Minh Trinh' every 10 records."""
         if not self.records:

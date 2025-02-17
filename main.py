@@ -90,6 +90,7 @@ def main():
             description = input("Enter description: ")
             value = input("Enter value: ")
             business.add_record(Record(csduid, csd, period, description, value))
+            print("New record has been added.")
         elif choice == "4":
             period = int(input("Enter period to update: "))
             new_value = float(input("Enter new value: "))
