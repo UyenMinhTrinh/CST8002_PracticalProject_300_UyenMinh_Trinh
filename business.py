@@ -15,6 +15,14 @@ class Business:
         self.records.append(record)
         print("Record successfully added.")
 
+    def update_record(self, period, new_value):
+        """Updates the value of records with the given period."""
+        updated = False
+        for record in self.records:
+            if record.period == period:
+                record.value = new_value
+                updated = True
+        return updated
 
     def list_records(self):
         """Displays all records, printing 'Program by Uyen Minh Trinh' every 10 records."""
