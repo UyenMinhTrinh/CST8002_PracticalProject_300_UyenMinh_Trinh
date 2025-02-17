@@ -60,11 +60,57 @@ def main():
     print("Author: Uyen Minh Trinh\n", flush=True)
     # Variable declaration
     file_path = 'Dwellingunitsdownload.csv'
-    records = load_data(file_path)
-    if records:
-        display_records(records)
-    else:
-        print("No records to display.")
+    business = Business(records)
 
+    while True:
+        print("\n--- Data Management System ---")
+        print("\nProgram by Uyen Minh Trinh\n")
+        print("1. List all records")
+        print("2. Find a record")
+        print("3. Add a record")
+        print("4. Update a record")
+        print("5. Delete a record")
+        print("6. Save & Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            business.list_records()
+        elif choice == "2":
+            period = int(input("Enter period: "))
+            result = business.find_record(period)
+            if result:
+                for record in result:
+                    print(record)
+            else:
+                print("Record not found.")
+        elif choice == "3":
+            csduid = input("Enter CSDUID: ")
+            csd = input("Enter CSD: ")
+            period = input("Enter period: ")
+            description = input("Enter description: ")
+            value = input("Enter value: ")
+            business.add_record(Record(csduid, csd, period, description, value))
+        elif choice == "4":
+            period = int(input("Enter period to update: "))
+            new_value = float(input("Enter new value: "))
+            if business.update_record(period, new_value):
+                print("Record updated.")
+            else:
+                print("Record not found.")
+        elif choice == "5":
+            period = int(input("Enter period to delete: "))
+            business.delete_record(period)
+            print("Record deleted.")
+        elif choice == "6":
+            Persistence.save_data(business.records)
+            print("Exiting...")
+            break
+        elif choice == "7":
+            records = Persistence.load_data(filename)
+            business = Business(records)
+            print("Data has been reloaded from the dataset.")
+        else:
+            print("Invalid choice. Try again.")
+            
 if __name__ == "__main__":
     main()
