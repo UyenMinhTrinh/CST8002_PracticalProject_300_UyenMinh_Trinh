@@ -23,6 +23,16 @@ class Business:
                 record.value = new_value
                 updated = True
         return updated
+    
+    def delete_record(self, period):
+        """Deletes records with the given period from memory."""
+        initial_count = len(self.records)
+        self.records = [record for record in self.records if record.period != period]
+        if len(self.records) < initial_count:
+            print("Record deleted successfully.")
+        else:
+            print("No matching record found.")
+
 
     def list_records(self):
         """Displays all records, printing 'Program by Uyen Minh Trinh' every 10 records."""
