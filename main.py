@@ -9,8 +9,12 @@ This is the main program file for parsing a CSV file into Record objects
 and displaying the records in the console. It demonstrates the use of File I/O,
 Object-Oriented Programming (OOP), and error handling in Python.
 """
+
 import csv
 from record import Record
+from persistence import Persistence
+from business import Business
+from record_manager import RecordManager
 
 def load_data(file_path):
     """
@@ -54,64 +58,42 @@ def display_records(records):
         print(record)
 
 def main():
-    """
-    Main entry point for the program.
-    """
-    print("Author: Uyen Minh Trinh\n", flush=True)
-    # Variable declaration
-    file_path = 'Dwellingunitsdownload.csv'
-    business = Business(records)
+    manager = RecordManager()  # ✅ Now it should work
 
     while True:
-        print("\n--- Data Management System ---")
-        print("\nProgram by Uyen Minh Trinh\n")
-        print("1. List all records")
-        print("2. Find a record")
-        print("3. Add a record")
-        print("4. Update a record")
-        print("5. Delete a record")
-        print("6. Save & Exit")
-        choice = input("Enter your choice: ")
+        print("\n1. Add Record")
+        print("2. View Records")
+        print("3. Update Record")
+        print("4. Delete Record")
+        print("5. Exit")
+        choice = input("Choose an option: ")
 
         if choice == "1":
-            business.list_records()
+            name = input("Enter name: ")
+            value = int(input("Enter value: "))
+            manager.add_record(name, value)
+
         elif choice == "2":
-            period = int(input("Enter period: "))
-            result = business.find_record(period)
-            if result:
-                for record in result:
-                    print(record)
-            else:
-                print("Record not found.")
+            records = manager.get_all_records()
+            for record in records:
+                print(f"ID: {record.id}, Name: {record.name}, Value: {record.value}")
+
         elif choice == "3":
-            csduid = input("Enter CSDUID: ")
-            csd = input("Enter CSD: ")
-            period = input("Enter period: ")
-            description = input("Enter description: ")
-            value = input("Enter value: ")
-            business.add_record(Record(csduid, csd, period, description, value))
-            print("New record has been added.")
+            record_id = int(input("Enter ID to update: "))
+            new_name = input("Enter new name: ")
+            new_value = int(input("Enter new value: "))
+            manager.update_record(record_id, new_name, new_value)
+
         elif choice == "4":
-            period = int(input("Enter period to update: "))
-            new_value = float(input("Enter new value: "))
-            if business.update_record(period, new_value):
-                print("Record updated.")
-            else:
-                print("Record not found.")
+            record_id = int(input("Enter ID to delete: "))
+            manager.delete_record(record_id)
+
         elif choice == "5":
-            period = int(input("Enter period to delete: "))
-            business.delete_record(period)
-            print("Record deleted.")
-        elif choice == "6":
-            Persistence.save_data(business.records)
             print("Exiting...")
             break
-        elif choice == "7":
-            records = Persistence.load_data(filename)
-            business = Business(records)
-            print("Data has been reloaded from the dataset.")
+
         else:
-            print("Invalid choice. Try again.")
-            
+            print("Invalid option!")
+
 if __name__ == "__main__":
     main()
